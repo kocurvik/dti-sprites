@@ -3,27 +3,31 @@ dataset:
 model:
   name: dti_sprites
   n_sprites: 7
-  n_backgrounds: 0
-  n_objects: 3
-  freeze_sprite: 1
+  n_backgrounds: 1
+  n_objects: 6
+  freeze_sprite: 40
   inject_noise: 0.4
-  encoder_name: resnet32
-  transformation_sequence: identity
+  encoder_name: resnet18
+  with_pool: [2, 2]
+  transformation_sequence: identity_projective
   transformation_sequence_bkg: color
   transformation_sequence_layer: color_aff
-  curriculum_learning: False
+  curriculum_learning: [150]
   curriculum_learning_bkg: False
   curriculum_learning_layer: False
   proto_init: constant
   mask_init: gaussian
-  sprite_size: [24, 24]
-  gaussian_weights_std: 5
-  pred_occlusion: False
+  bkg_init: mean
+  sprite_size: [40, 40]
+  gaussian_weights_std: 10
+  pred_occlusion: True
   estimate_minimum: True
-  greedy_algo_iter: 1
+  greedy_algo_iter: 3
+  add_empty_sprite: True
+  lambda_empty_sprite: 1.0e-4
 training:
   batch_size: 32
-  n_workers: 2
+  n_workers: 4
   optimizer:
     name: adam
     lr: 1.0e-4
@@ -32,14 +36,15 @@ training:
   scheduler:
     name: multi_step
     gamma: [1, 0.1]
-    milestones: [100, 200]
-  n_epoches: 210
-  train_stat_interval: 500
-  val_stat_interval: 1000
-  check_cluster_interval: 50
+    milestones: [250, 400]
+  n_epoches: 450
+  train_stat_interval: 1000
+  val_stat_interval: 2000
+  check_cluster_interval: 250
   eval_with_bkg: True
   eval_semantic: True
-  seed: 65176
+  seed: 41459
   visualizer_port:
   pretrained:
   resume:
+
