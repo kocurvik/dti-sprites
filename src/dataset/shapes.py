@@ -61,7 +61,7 @@ class ShapesDataset(Dataset):
             img = add_random_shape(img, max_diam=self.max_diam, max_vertices=self.max_vertices)
 
         tensor_img =  transforms.ToTensor()(img)
-        return tensor_img, torch.zeros_like(tensor_img, dtype=torch.long)
+        return tensor_img, torch.zeros(1, self.img_size[0], self.img_size[1], dtype=torch.long)
 
     def __len__(self):
         # return len(self.img_paths)
