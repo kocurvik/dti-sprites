@@ -41,6 +41,7 @@ class ShapesDataset(Dataset):
 
         self.eval_mode = kwargs.get('eval_mode', False) or split == 'test'
         self.eval_semantic = kwargs.get('eval_semantic', False)
+        self.instance_eval = True
 
         self.max_vertices = max_vertices
         self.n_classes = max_vertices - 3
