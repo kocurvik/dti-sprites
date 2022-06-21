@@ -22,7 +22,7 @@ model:
   estimate_minimum: True
   greedy_algo_iter: 1
 training:
-  batch_size: 24
+  batch_size: 32
   n_workers: 2
   optimizer:
     name: adam

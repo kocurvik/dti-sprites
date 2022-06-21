@@ -29,7 +29,7 @@ def add_random_shape(img, max_diam=32, max_vertices=10):
 
 
 class ShapesDataset(Dataset):
-    def __init__(self, split, img_size=(128, 128), max_diam=10, size=1200, max_vertices=10):
+    def __init__(self, split, img_size=(128, 128), max_diam=10, size=1200, max_vertices=10, **kwargs):
         self.img_size = img_size
         self.n_channels = 3
         self.max_diam = max_diam
@@ -39,8 +39,12 @@ class ShapesDataset(Dataset):
         else:
             self.size = size
 
+        self.eval_mode = kwargs.get('eval_mode', False) or split == 'test'
+        self.eval_semantic = kwargs.get('eval_semantic', False)
+
         self.max_vertices = max_vertices
         self.n_classes = max_vertices - 3
+
 
 
 
