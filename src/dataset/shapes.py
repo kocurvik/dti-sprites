@@ -29,7 +29,7 @@ def add_random_shape(img, max_diam=32, max_vertices=10):
 
 
 class ShapesDataset(Dataset):
-    def __init__(self, split, img_size=(128, 128), max_diam=10, size=1200, max_vertices=10, **kwargs):
+    def __init__(self, split, img_size=(128, 128), max_diam=10, size=60000, max_vertices=10, **kwargs):
         self.img_size = img_size
         self.n_channels = 3
         self.max_diam = max_diam
@@ -45,9 +45,6 @@ class ShapesDataset(Dataset):
 
         self.max_vertices = max_vertices
         self.n_classes = max_vertices - 3
-
-
-
 
     def __getitem__(self, index):
         default_bg_gray = np.random.rand()

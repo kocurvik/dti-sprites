@@ -4,7 +4,7 @@ model:
   name: dti_sprites
   n_sprites: 7
   n_backgrounds: 1
-  n_objects: 6
+  n_objects: 10
   freeze_sprite: 40
   inject_noise: 0.4
   encoder_name: resnet18
