@@ -3,8 +3,8 @@ dataset:
 model:
   name: dti_sprites
   n_sprites: 1
-  n_backgrounds: 0
-  n_objects: 30
+  n_backgrounds: 1
+  n_objects: 10
   freeze_sprite: 1
   inject_noise: 0.4
   encoder_name: resnet18
@@ -17,11 +17,14 @@ model:
   curriculum_learning_layer: False
   proto_init: constant
   mask_init: gaussian
+  bkg_init: mean
   sprite_size: [40, 40]
   gaussian_weights_std: 5
   pred_occlusion: False
   estimate_minimum: True
   greedy_algo_iter: 3
+  add_empty_sprite: True
+  lambda_empty_sprite: 1.0e-4
 training:
   batch_size: 32
   n_workers: 2
