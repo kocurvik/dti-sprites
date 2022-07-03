@@ -1,0 +1,45 @@
+dataset:
+  name: cuboids
+model:
+  name: dti_sprites
+  n_sprites: 1
+  n_backgrounds: 0
+  n_objects: 30
+  freeze_sprite: 1
+  inject_noise: 0.4
+  encoder_name: resnet18
+  transformation_sequence: identity_projective
+  transformation_sequence_bkg: color
+  transformation_sequence_layer: color_aff
+  curriculum_learning: False
+  curriculum_learning_bkg: False
+  curriculum_learning_layer: False
+  proto_init: constant
+  mask_init: gaussian
+  sprite_size: [40, 40]
+  gaussian_weights_std: 5
+  pred_occlusion: False
+  estimate_minimum: True
+  greedy_algo_iter: 3
+training:
+  batch_size: 8
+  n_workers: 2
+  optimizer:
+    name: adam
+    lr: 1.0e-4
+    transformer:
+      weight_decay: 1.0e-6
+  scheduler:
+    name: multi_step
+    gamma: [1, 0.1]
+    milestones: [100, 200]
+  n_epoches: 210
+  train_stat_interval: 500
+  val_stat_interval: 1000
+  check_cluster_interval: 50
+  eval_with_bkg: True
+  eval_semantic: True
+  seed: 65176
+  visualizer_port:
+  pretrained:
+  resume:

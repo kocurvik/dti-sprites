@@ -1,4 +1,5 @@
 from .cosegmentation import WeizmannHorseDataset
+from .cuboids import Cuboids
 from .gtsrb import GTSRB8Dataset
 from .multi_object import DSpritesGrayDataset, TetrominoesDataset, CLEVR6Dataset
 from .instagram import InstagramDataset
@@ -23,5 +24,7 @@ def get_dataset(dataset_name):
         # Torchvision
         'svhn': SVHNDataset,
 
-        'shapes': ShapesDataset
+        'shapes': ShapesDataset,
+        'cuboids': Cuboids
+
     }[dataset_name]
