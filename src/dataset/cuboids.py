@@ -162,7 +162,7 @@ def randomly_rotate_image(image):
 
 
 class Cuboids(Dataset):
-    def __init__(self, split, img_size=(128, 128), size=60000,):
+    def __init__(self, split, img_size=(128, 128), size=60000, **kwargs):
         # checkpointdir = os.checkpointdir.join(root, mode)
         assert split in ['train', 'val', 'test']
         self.root = os.path.join(DATASETS_PATH, 'cuboids')
@@ -173,6 +173,10 @@ class Cuboids(Dataset):
         self.n_channels = 3
 
         assert os.path.exists(self.root), 'Path {} does not exist'.format(self.root)
+
+        self.eval_mode = kwargs.get('eval_mode', False) or split == 'test'
+        self.eval_semantic = kwargs.get('eval_semantic', False)
+        self.instance_eval = True
 
         self.img_paths = []
         # img_dir = os.path.join(self.root, mode)
