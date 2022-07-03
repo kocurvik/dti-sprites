@@ -168,7 +168,7 @@ class Cuboids(Dataset):
         self.root = os.path.join(DATASETS_PATH, 'cuboids')
         self.mode = split
         self.img_size = img_size
-        self.size = size if self.mode == 'train' else 320
+        self.size = size if self.mode == 'train' else 96
         self.n_classes = 1
         self.n_channels = 3
 
